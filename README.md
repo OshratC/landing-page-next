@@ -21,6 +21,28 @@ A landing page for tennis lessons, featuring a registration form with full valid
 - **Phone Number** (Phone Number)
 - **Status** (Single Select - Todo, In Process, Done)
 
+---
+
+## Features
+-  responsive design — works on mobile and desktop
+-  Registration form 
+-  Form Validation
+-  Airtable API integration 
+-  Success/Error feedback 
+-  Back to Top button
+-  Secure environment variables - API token stored in .env.local
+-  Component-based architecture
+
+---
+
+## Validation
+- Full Name - Required
+- Phone Number - Required (starts with 05 and must contain 10 digits)
+- Email - Required (Must contain @ . and characters before and after each sign)
+- Message - Not Required
+
+---
+
 ## API Request :
 - **Method :** POST
 - **URL :** https://api.airtable.com/v0/${process.env.NEXT_PUBLIC_BASE_ID}/Contacts
@@ -51,10 +73,17 @@ A landing page for tennis lessons, featuring a registration form with full valid
   }
 
 **Response:**
-- 201 Created (הצלחה)
-- 422 Unprocessable (שגיאה בנתונים)
-- 401 Unauthorized (שגיאת Token)
+- 201 Created (Success)
+- 422 Unprocessable (Error Data)
+- 401 Unauthorized (Error Token)
 
+---
+
+## Environment Variables
+- NEXT_PUBLIC_BASE_ID
+- NEXT_PUBLIC_API_TOKEN
+
+---
 
 ## Installation
 
@@ -65,23 +94,3 @@ cd landing-page-next
 npm install
 
 npm run dev
-
-## Environment Variables
-- NEXT_PUBLIC_BASE_ID
-- NEXT_PUBLIC_API_TOKEN
-
-## Validation
-- Full Name - שדה חובה
-- Phone Number - שדה חובה, חייב להתחיל ב-05 ולהכיל 10 ספרות
-- Email - שדה חובה, חייב להכיל @ ונקודה
-- Message - לא חובה
-
-## Features
--  responsive design — works on mobile and desktop
--  Registration form 
--  Form Validation
--  Airtable API integration 
--  Success/Error feedback 
--  Back to Top button
--  Secure environment variables - API token stored in .env.local
--  Component-based architecture 
