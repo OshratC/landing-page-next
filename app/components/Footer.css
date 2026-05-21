@@ -1,0 +1,62 @@
+.footer {
+  background: #1a1a1a;
+  color: #e5e7eb;
+  direction: rtl;
+  padding: 48px 0 0 0;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-section h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #d4f54c;
+  margin-bottom: 8px;
+}
+
+.footer-section h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #d4f54c;
+  margin-bottom: 12px;
+}
+
+.footer-section p {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+.footer-bottom {
+  margin-top: 40px;
+  padding: 16px 24px;
+  border-top: 1px solid #333;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column;
+  }
+}
+.footer-section a svg {
+  color: #25D366; /* WhatsApp */
+}
+
+.footer-section a[href^="mailto"] svg {
+  color: #4f46e5; /* אימייל */
+}
+.footer-section a[href*="maps.google"] svg {
+  color: #EA4335; /* צבע אדום של Google Maps */
+}
