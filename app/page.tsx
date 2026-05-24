@@ -6,7 +6,7 @@ import HeroSection from "./components/HeroSection";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
-// הצהרה זו הפונקציה הראשית של הדף - פרטי עבור קובץ page.tsx
+
 export default function Home() {
   const [submitted, setSubmitted] = useState(false); // ברירת מחדל הטופס לא נשלח
 
@@ -29,9 +29,7 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
-      <div id="contact-form">
-        <ContactForm onSuccess={() => setSubmitted(true)} /> 
-      </div>
+      <ContactForm onSuccess={() => setSubmitted(true)} /> 
       <Footer />
       <BackToTop />
     </main>

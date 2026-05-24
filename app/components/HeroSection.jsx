@@ -4,7 +4,14 @@ function HeroSection()  {
     // חץ מפנה לטופס 
   const scrollToForm = () => {
     document.getElementById("contact-form").scrollIntoView({ behavior: "smooth" }); // instant / smooth 
+ 
+  //לאחר הגלילה נעשה פוקוס
+  setTimeout(() => {
+    document.getElementById("name").focus();
+  }, 800);
+
   };
+
 
   return (
     <section className="hero">
@@ -21,5 +28,5 @@ function HeroSection()  {
   );
 }
 
-// ייצוא הקומפוננטה על מנת שיהיה נ יתן לייבא אותה
+// ייצוא הקומפוננטה על מנת שיהיה ניתן לייבא אותה
 export default HeroSection;

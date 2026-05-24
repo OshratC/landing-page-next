@@ -1,6 +1,6 @@
 import "./Footer.css";
-import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaGoogle } from "react-icons/fa";
-const ICON_SIZE = 20;
+import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+
 function Footer() {
   return (
     <footer className="footer">
@@ -14,17 +14,17 @@ function Footer() {
         <div className="footer-section">
           <p>
                 <a href="https://wa.me/972503612224" target="_blank" rel="noreferrer">
-                    <FaWhatsapp size={ICON_SIZE} /> 
+                    <FaWhatsapp /> 
                 </a>
             </p>
             <p>
                 <a href="mailto:oshratz2002@gmail.com">
-                    <FaEnvelope size={ICON_SIZE} /> 
+                    <FaEnvelope /> 
                 </a>
             </p>
         <p>
             <a href="https://maps.google.com/?q=+קרית+ספורט+קדימה" target="_blank" rel="noreferrer">
-                <FaMapMarkerAlt size={ICON_SIZE} /> 
+                <FaMapMarkerAlt  /> 
             </a>
         </p>
         </div>

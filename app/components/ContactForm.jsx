@@ -1,22 +1,32 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./ContactForm.css";
 
-
 function ContactForm(props) {
-    // איפוס הטופס
+    // אתחול הטופס
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState(null); // זיכרון שמכיל את מצב השליחה 
-  const [errors, setErrors] = useState({}); // זיכרון שמכיל את שגיאות הולידציה
 
+  //פוקוס בטעינת הדף
+  useEffect(() => {
+    nameRef.current.focus();
+  }, []);
+
+  const [status, setStatus] = useState(null); // מנהל את מצב השליחה - null, loading, error
+  const [errors, setErrors] = useState({}); // מנהל את שגיאות הולידציה
+  const nameRef = useRef(null);
+  const phoneRef = useRef(null);
+  const emailRef = useRef(null);
+  const messageRef = useRef(null);
+
+  //עדכון שדות תוך שמירה על ערכים קיימים
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value })); // prev שומר על שאר השדות ומעדן רק את הנוכחי
+    setFormData(prev => ({ ...prev, [name]: value })); // prev שומר על שאר השדות ומעדכן רק את הנוכחי
   };
 
   const validate = () => {
@@ -27,7 +37,7 @@ function ContactForm(props) {
 
     if (!formData.phone.trim())
         newErrors.phone = "שדה חובה";
-        else if (!/^05\d{8}$/.test(formData.phone.replace(/-/g, ""))) // חייב להתחיל ב 05 ואז 8 ספרות, נתעלם ממקפים
+    else if (!/^05\d{8}$/.test(formData.phone.replace(/-/g, ""))) // חייב להתחיל ב 05 ואז 8 ספרות, נתעלם ממקפים
         newErrors.phone = "יש להזין מספר תקין";
 
     if (!formData.email.trim())
@@ -36,19 +46,20 @@ function ContactForm(props) {
       newErrors.email = "יש להזין מייל תקין";
 
     setErrors(newErrors); // מחזיר שגיאות למשתמש
-    return newErrors; // מחזיר שגיאות לקוד שנדע אם לשלוח את הטופס
+    return newErrors; // מחזיר שגיאות
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // מונע מהדפדפן לרענן את הדף "שלח" שזו ברירת המחדל של טופס
+    e.preventDefault(); // מונע מהדפדפן לרענן את הדף שזו ברירת המחדל של טופס
 
     const newErrors = validate();
+    // יש שגיאות נעצור
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
-    setErrors({});
+    setErrors({}); // no errors
     setStatus("loading");
 
     try {
@@ -62,6 +73,7 @@ function ContactForm(props) {
           },
           body: JSON.stringify({
             fields: {
+              //שדה עם רוווחים נעטוף במרכאות
               "Full Name": formData.name,
               "Phone Number": formData.phone,
               Email: formData.email,
@@ -73,87 +85,98 @@ function ContactForm(props) {
 
       if (response.ok) {
         props.onSuccess();
-      } else {
+      } 
+      else {
         setStatus("error");
       }
-    } catch (error) {
-      console.log("Error:", error);
+    }
+    catch (error) {
+      //console.log("Error:", error);
       setStatus("error");
     }
   };
 
   return (
-    <div className="form-wrapper">
-      <h1 className="form-title">לפרטים נוספים</h1>
-      {status === "error" ? (
-        <div className="status-message error">
-          <p>שגיאה בשליחה, נסי שוב</p>
-          <button onClick={() => setStatus(null)} className="reset-btn">
-            נסי שוב
-          </button>
+    <section id="contact-form" className="contact-section">
+      <div className="form-wrapper">
+        <h1 className="form-title">לפרטים נוספים</h1>
+        {status === "error" ? (
+          <div className="status-message error">
+            <p>שגיאה בשליחה, נסי שוב</p>
+            <button onClick={() => setStatus(null)} className="reset-btn">
+              נסי שוב
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="form">
+            <div className="input-group">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder=" "
+                value={formData.name}
+                onChange={handleChange}
+                ref={nameRef}
+                onKeyDown={(e) => e.key === "Enter" && phoneRef.current.focus()}
+              />
+              <label htmlFor="name">שם מלא</label>
+              {errors.name && <span className="error-msg">{errors.name}</span>} 
+            </div>
+
+            <div className="input-group">
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder=" "
+                value={formData.phone}
+                onChange={handleChange}
+                ref={phoneRef}
+                onKeyDown={(e) => e.key === "Enter" && emailRef.current.focus()}
+              />
+              <label htmlFor="phone">מספר טלפון</label>
+              {errors.phone && <span className="error-msg">{errors.phone}</span>}
+            </div>
+
+            <div className="input-group">
+              <input
+                type="text"
+                id="email"
+                name="email"
+                placeholder=" "
+                value={formData.email}
+                onChange={handleChange}
+                ref={emailRef}
+                onKeyDown={(e) => e.key === "Enter" && messageRef.current.focus()}
+              />
+              <label htmlFor="email">אימייל</label>
+              {errors.email && <span className="error-msg">{errors.email}</span>}
+            </div>
+
+            <div className="input-group">
+              <textarea
+                id="message"
+                name="message"
+                placeholder=" "
+                value={formData.message}
+                onChange={handleChange}
+                ref={messageRef}
+              />
+              <label htmlFor="message">הודעה</label>
+            </div>
+
+            <button
+              type="submit"
+              className="submit-btn"
+              disabled={status === "loading"} // כפתור לא לחיץ בזמן השליחה
+            >
+              {status === "loading" ? "שולח..." : "שלח הודעה"}
+            </button>
+          </form>
+        )}
         </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="form">
-          <div className="input-group">
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder=" "
-              value={formData.name}
-              onChange={handleChange}
-            />
-            <label htmlFor="name">שם מלא</label>
-            {errors.name && <span className="error-msg">{errors.name}</span>} 
-          </div>
-
-          <div className="input-group">
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              placeholder=" "
-              value={formData.phone}
-              onChange={handleChange}
-            />
-            <label htmlFor="phone">מספר טלפון</label>
-            {errors.phone && <span className="error-msg">{errors.phone}</span>}
-          </div>
-
-          <div className="input-group">
-            <input
-              type="text"
-              id="email"
-              name="email"
-              placeholder=" "
-              value={formData.email}
-              onChange={handleChange}
-            />
-            <label htmlFor="email">אימייל</label>
-            {errors.email && <span className="error-msg">{errors.email}</span>}
-          </div>
-
-          <div className="input-group">
-            <textarea
-              id="message"
-              name="message"
-              placeholder=" "
-              value={formData.message}
-              onChange={handleChange}
-            />
-            <label htmlFor="message">הודעה</label>
-          </div>
-
-          <button
-            type="submit"
-            className="submit-btn"
-            disabled={status === "loading"}
-          >
-            {status === "loading" ? "שולח..." : "שלח הודעה"}
-          </button>
-        </form>
-      )}
-    </div>
+    </section>
   );
 }
 

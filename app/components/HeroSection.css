@@ -23,14 +23,6 @@
   padding: 20px;
 }
 
-.hero-tag {
-  font-size: 0.9rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #d4f54c;
-  margin-bottom: 16px;
-}
-
 .hero-title {
   font-size: 4rem;
   font-weight: 800;
@@ -52,7 +44,6 @@
   border-radius: 50px;
   font-size: 1.1rem;
   font-weight: 700;
-  cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease;
 }
 

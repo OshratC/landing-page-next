@@ -1,3 +1,8 @@
+/*קבוע לגודל האייקונים*/
+:root {
+  --icon-size: 20px; 
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -36,19 +41,13 @@ body {
   margin-bottom: 16px;
   color: #d4f54c;
 }
-
-.success-content p {
-  font-size: 1.4rem;
-  color: #e5e7eb;
+/*לכל הכפתורים שים מצביע*/
+button {
+  cursor: pointer;
 }
 
-#contact-form {
-  background-image: url("https://images.unsplash.com/photo-1691621743693-f880a073b8a9?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-  background-size: cover;
-  background-position: center;
-  padding: 60px;
-  display: flex;
-  justify-content: flex-end; /* ← טופס לצד ימין */
-  align-items: center;
-  min-height: 100vh;
+/*גודל אחיד לכל האייקונים*/
+svg {
+  width: var(--icon-size);
+  height: var(--icon-size);
 }

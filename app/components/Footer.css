@@ -44,12 +44,6 @@
   font-size: 0.85rem;
   color: #6b7280;
 }
-
-@media (max-width: 600px) {
-  .footer-content {
-    flex-direction: column;
-  }
-}
 .footer-section a svg {
   color: #25D366; /* WhatsApp */
 }
@@ -59,4 +53,18 @@
 }
 .footer-section a[href*="maps.google"] svg {
   color: #EA4335; /* צבע אדום של Google Maps */
+}
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .footer-section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
 }
