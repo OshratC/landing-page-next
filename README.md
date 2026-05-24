@@ -37,8 +37,8 @@ A landing page for tennis lessons, featuring a registration form with full valid
 
 ## Validation
 - Full Name - Required
-- Phone Number - Required (starts with 05 and must contain 10 digits)
-- Email - Required (Must contain @ . and characters before and after each sign)
+- Phone Number - Required (must start with 05, total 10 digits)
+- Email - Required (Must contain @ . and characters before and after each char)
 - Message - Not Required
 
 ---
