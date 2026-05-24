@@ -78,6 +78,14 @@ A landing page for tennis lessons, featuring a registration form with full valid
 - 401 Unauthorized (Error Token)
 
 ---
+## UX
+- Back to Top button
+- Auto focus
+- Tab navigation
+- Smooth scroll
+- Cursor pointer
+  
+---
 
 ## Environment Variables
 - NEXT_PUBLIC_BASE_ID
