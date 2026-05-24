@@ -24,14 +24,14 @@ A landing page for tennis lessons, featuring a registration form with full valid
 ---
 
 ## Features
--  responsive design — works on mobile and desktop
+-  Responsive design — works on mobile and desktop
 -  Registration form 
 -  Form Validation
 -  Airtable API integration 
 -  Success/Error feedback 
 -  Back to Top button
 -  Secure environment variables - API token stored in .env.local
--  Component-based architecture
+-  Component - based architecture
 
 ---
 
