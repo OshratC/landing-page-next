@@ -24,21 +24,21 @@ A landing page for tennis lessons, featuring a registration form with full valid
 ---
 
 ## Features
--  responsive design — works on mobile and desktop
+-  Responsive design — works on mobile and desktop
 -  Registration form 
 -  Form Validation
 -  Airtable API integration 
 -  Success/Error feedback 
 -  Back to Top button
 -  Secure environment variables - API token stored in .env.local
--  Component-based architecture
+-  Component - based architecture
 
 ---
 
 ## Validation
 - Full Name - Required
-- Phone Number - Required (starts with 05 and must contain 10 digits)
-- Email - Required (Must contain @ . and characters before and after each sign)
+- Phone Number - Required (must start with 05, total 10 digits)
+- Email - Required (Must contain @ . and characters before and after each char)
 - Message - Not Required
 
 ---
@@ -77,6 +77,14 @@ A landing page for tennis lessons, featuring a registration form with full valid
 - 422 Unprocessable (Error Data)
 - 401 Unauthorized (Error Token)
 
+---
+## UX
+- Back to Top button
+- Auto focus
+- Tab navigation
+- Smooth scroll
+- Cursor pointer
+  
 ---
 
 ## Environment Variables
