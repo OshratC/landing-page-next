@@ -1,6 +1,6 @@
 "use client"; // הקובץ רץ בדפדפן ולא בשרת (ברירת המחדל)
 
-import { useState } from "react"; // בדף זה משהו ישתנה בדף, יקרו שינויים בזמן אמת
+import { useState, useEffect } from "react"; // בדף זה משהו ישתנה בדף, יקרו שינויים בזמן אמת
 // ייבוא קומפוננטות
 import HeroSection from "./components/HeroSection";
 import ContactForm from "./components/ContactForm";
@@ -9,6 +9,10 @@ import BackToTop from "./components/BackToTop";
 
 export default function Home() {
   const [submitted, setSubmitted] = useState(false); // ברירת מחדל הטופס לא נשלח
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
 
   // עמוד החיווי בעת שליחת הטופס בהצלחה
   if (submitted) {

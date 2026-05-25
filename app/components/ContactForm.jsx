@@ -12,9 +12,9 @@ function ContactForm(props) {
   });
 
   //פוקוס בטעינת הדף
-  useEffect(() => {
-    nameRef.current.focus();
-  }, []);
+  //useEffect(() => {
+  //  nameRef.current.focus();
+  //}, []);
 
   const [status, setStatus] = useState(null); // מנהל את מצב השליחה - null, loading, error
   const [errors, setErrors] = useState({}); // מנהל את שגיאות הולידציה
