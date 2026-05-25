@@ -11,13 +11,10 @@ function ContactForm(props) {
     message: "",
   });
 
-  //פוקוס בטעינת הדף
-  //useEffect(() => {
-  //  nameRef.current.focus();
-  //}, []);
-
   const [status, setStatus] = useState(null); // מנהל את מצב השליחה - null, loading, error
   const [errors, setErrors] = useState({}); // מנהל את שגיאות הולידציה
+
+  // מאפשר גישה ישירה לאלמנט
   const nameRef = useRef(null);
   const phoneRef = useRef(null);
   const emailRef = useRef(null);
@@ -117,7 +114,7 @@ function ContactForm(props) {
                 placeholder=" "
                 value={formData.name}
                 onChange={handleChange}
-                ref={nameRef}
+                ref={nameRef} // על איזה שדה מצביע nameRef
                 onKeyDown={(e) => e.key === "Enter" && phoneRef.current.focus()}
               />
               <label htmlFor="name">שם מלא</label>
